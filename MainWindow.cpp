@@ -12,8 +12,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     inpFilePath = new QString();
     csvFilePath = new QString();
 
-
-
     /********************************************************************************************/
     /*------------------------------------INITIALIZE WIDGETS------------------------------------*/
     /********************************************************************************************/
@@ -806,7 +804,7 @@ bool MainWindow::controlEmptyFields(void)
 
 void MainWindow::about(){
     QMessageBox::about(NULL,tr("About"),
-                       tr("Version: 0.02\nUbuntu-tr.net - UGT\nFor Bugs and Questions \nSemetey Coskun -Programmer - semeteycoskun@gmail.com\nSinan Ates -Physicist, Programmer - sinanates2011@gmail.com"));
+                       tr("Version: 0.1\nUbuntu-tr.net - UGT\nFor Bugs and Questions \nSemetey Coskun -Programmer - semeteycoskun@gmail.com\nSinan Ates -Physicist, Programmer - sinanates2011@gmail.com"));
 }
 
 
