@@ -1,9 +1,13 @@
 SOURCES += \
     main.cpp \
-    MainWindow.cpp
+    MainWindow.cpp \
+    settingdialog.cpp
 
 HEADERS += \
-    MainWindow.h
+    MainWindow.h \
+    settingdialog.h
 
 RESOURCES += \
     EmbdedImages.qrc
+
+FORMS +=

@@ -1,16 +1,16 @@
 #include <QtGui>
 #include <QFileDialog>
 #include "MainWindow.h"
+#include "settingdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     //Temp
     inpFileName = new QString("inp");
-    int sensitivity =  6;
-    int maxDigit = 10000;
-
     inpFilePath = new QString();
     csvFilePath = new QString();
+
+
 
     /********************************************************************************************/
     /*------------------------------------INITIALIZE WIDGETS------------------------------------*/
@@ -692,6 +692,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     this->showMaximized();
 
 
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -702,7 +703,9 @@ void MainWindow::createActions(void)
     this->inpFilePathAction = new QAction(tr("Set inp file output path"), this);
     this->octopusOutPathPutAction = new QAction(tr("Set Octopus output files path"), this);
     this->aboutAction = new QAction (tr("About"),this);
+    this->settingAction = new QAction(tr("Settings"),this);
     connect(aboutAction,SIGNAL(triggered()),this,SLOT(about()));
+    connect(settingAction,SIGNAL(triggered()),this,SLOT(settings()));
 
     //view menu actions
     this->toggleFullScreen = new QAction(QIcon(":/images/ok"), tr("Full Screen"), this);
@@ -719,7 +722,7 @@ void MainWindow::createMenus(void)
     this->settingsMenu = menuBar()->addMenu(tr("&Settings"));
     settingsMenu->addAction(this->inpFilePathAction);
     settingsMenu->addAction(this->octopusOutPathPutAction);
-
+    settingsMenu->addAction(this->settingAction);
     //view menu
     this->viewMenu = menuBar()->addMenu(tr("&View"));
     viewMenu->addAction(this->toggleFullScreen);
@@ -952,6 +955,24 @@ void MainWindow::setCsvFilePath()
                                                 &selectedFilter,
                                                 options);
     csvFilePathLine->setText(*csvFilePath);
+}
+/////////////////////////////////
+void MainWindow::keyReleaseEvent(QKeyEvent* event)
+{
+
+    switch(event->key()){
+        case Qt::Key_F11:{
+            const bool currentState = this->isFullScreen();
+            toggleFullScreenFunction(!currentState);
+        }
+    }
+}
+void MainWindow::settings()
+{
+    settingsDialog = new SettingDialog;
+    if(settingsDialog->exec()== QDialog::Accepted){
+
+    }
 }
 
 

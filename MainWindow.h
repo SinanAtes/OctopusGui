@@ -1,5 +1,6 @@
 #include <QMainWindow>
 #include <QQueue>
+#include "settingdialog.h"
 
 class QPushButton;
 class QLabel;
@@ -16,6 +17,8 @@ class MainWindow : public QMainWindow
 Q_OBJECT
 public:
     MainWindow(QWidget *parent = 0);
+protected:
+    virtual void keyReleaseEvent ( QKeyEvent * event );
 
 private:
     bool controlEmptyFields(void);
@@ -30,9 +33,13 @@ private slots:
     void workWithMultiDirectories(int);
     void setInpFilePath();
     void setCsvFilePath();
+    void settings();
 
 private:
     QString inpText;
+    SettingDialog *settingsDialog; //for settings dialog
+    int sensitivity;
+    int maxDigit;
 
     /****Parameters***/
     QString *inpFileName;
@@ -261,6 +268,7 @@ private:
     QAction *inpFilePathAction;
     QAction *octopusOutPathPutAction;
     QAction *addNewParameterAction;
+    QAction *settingAction;
 
     //view menu actions
     QAction *toggleFullScreen;
